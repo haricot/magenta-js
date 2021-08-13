@@ -17,7 +17,6 @@ const getDemos = (source: any)  => {
       .filter(demo => specified.length ? specified.includes(demo) : true);
 };
 
-console.log(getDemos('./demos'));
 const entries = getDemos('./demos').reduce(   (obj, name) => {
   // @ts-ignore
   obj[name] = `./demos/${name}.js`;
