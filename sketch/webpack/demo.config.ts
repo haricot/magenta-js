@@ -10,14 +10,16 @@ const args = minimist(process.argv.slice(2));
 console.log("-------------", args)
 const specified: string[] = args.demos ? args.demos.split(',') : [];
 
-const getDemos = source => {
+const getDemos = (source: any)  => {
   return fs.readdirSync(source)
       .filter(name => path.extname(name) === '.html' && name !== 'index.html')
       .map(name => path.basename(name, '.html'))
       .filter(demo => specified.length ? specified.includes(demo) : true);
 };
 
-const entries = getDemos('./demos').reduce((obj, name) => {
+console.log(getDemos('./demos'));
+const entries = getDemos('./demos').reduce(   (obj, name) => {
+  // @ts-ignore
   obj[name] = `./demos/${name}.js`;
   return obj;
 }, {});
